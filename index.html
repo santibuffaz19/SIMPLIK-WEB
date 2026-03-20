@@ -124,10 +124,10 @@
 
     <div id="particles-js"></div>
 
-    <header class="fixed top-0 w-full z-50 transition-all duration-300 px-4 md:px-6 py-3 md:py-4" id="main-header">
+    <header class="fixed top-0 w-full z-50 transition-all duration-300 px-4 md:px-6 py-2 md:py-4" id="main-header">
         <nav class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center gap-2">
-                <img src="logo der simplik.png" alt="SIMPLIK" class="h-10 md:h-12 drop-shadow-glow" style="filter: drop-shadow(0px 0px 8px rgba(0, 210, 255, 0.3));">
+                <img src="logo der simplik.png" alt="SIMPLIK" class="h-14 md:h-16 drop-shadow-glow" style="filter: drop-shadow(0px 0px 8px rgba(0, 210, 255, 0.3));">
             </div>
             
             <div class="flex gap-4 md:gap-8 items-center font-mono text-xs md:text-sm">
@@ -146,7 +146,7 @@
     </header>
 
     <main>
-        <section class="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-24 pb-16">
+        <section class="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-20 pb-10">
             <h1 class="text-3xl sm:text-4xl md:text-7xl font-extrabold mb-6" data-aos="fade-up">
                 <span class="typewriter block mx-auto text-xl sm:text-3xl md:text-7xl">Hacemos simple lo complejo</span>
             </h1>
@@ -160,7 +160,7 @@
             </div>
         </section>
 
-        <section id="nosotros" class="py-16 md:py-24 px-6 max-w-7xl mx-auto">
+        <section id="nosotros" class="pt-10 pb-16 md:py-24 px-6 max-w-7xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-center">
                 <div class="glass p-8 md:p-12 relative overflow-hidden" data-aos="fade-right">
                     <div class="absolute top-0 right-0 p-4 opacity-10 hidden md:block">
@@ -484,17 +484,22 @@
             successMsg.classList.add('hidden');
         }
 
-        // Header Scroll Effect (Ajustado padding para móvil)
+        // Header Scroll Effect (Ajustado padding py-2 para móvil, fijo para evitar saltos)
         window.addEventListener('scroll', () => {
             const header = document.getElementById('main-header');
             if (window.scrollY > 50) {
                 header.classList.add('glass', 'shadow-2xl');
-                header.classList.remove('py-3', 'md:py-4');
-                header.classList.add('py-2');
+                // En móvil mantenemos py-2 fijo para evitar el jitter
+                if (window.innerWidth >= 768) {
+                   header.classList.remove('md:py-4');
+                   header.classList.add('md:py-2');
+                }
             } else {
                 header.classList.remove('glass', 'shadow-2xl');
-                header.classList.add('py-3', 'md:py-4');
-                header.classList.remove('py-2');
+                if (window.innerWidth >= 768) {
+                   header.classList.remove('md:py-2');
+                   header.classList.add('md:py-4');
+                }
             }
         });
     </script>
