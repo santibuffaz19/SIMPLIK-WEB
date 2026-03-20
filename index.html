@@ -29,7 +29,8 @@
     </script>
 
     <style>
-        body { background-color: #001B3D; color: white; overflow-x: hidden; cursor: none; }
+        /* Base body styles (default for mobile) */
+        body { background-color: #001B3D; color: white; overflow-x: hidden; cursor: auto; }
         
         /* Glassmorphism */
         .glass {
@@ -40,8 +41,9 @@
             border-radius: 1.5rem;
         }
 
-        /* Custom Cursor */
+        /* Custom Cursor - Oculto por defecto (para móvil) */
         #cursor {
+            display: none; /* Ocultar en móvil */
             width: 20px;
             height: 20px;
             background: #00D2FF;
@@ -51,6 +53,12 @@
             z-index: 9999;
             transition: transform 0.1s ease-out, background 0.3s;
             mix-blend-mode: screen;
+        }
+
+        /* Responsive Cursor - Mostrar y activar solo en PC/Tablets (md y superior) */
+        @media (min-width: 768px) {
+            body { cursor: none; }
+            #cursor { display: block; }
         }
 
         /* Particles Background */
@@ -73,13 +81,23 @@
             transform: translateY(-2px);
         }
 
+        /* Typewriter adaptation for mobile */
         .typewriter {
             overflow: hidden;
             border-right: .15em solid #00D2FF;
             white-space: nowrap;
             margin: 0 auto;
-            letter-spacing: .15em;
+            letter-spacing: .10em; /* Un poco menos espacio en móvil */
             animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+            max-width: 100%; /* Asegurar que no se corte */
+        }
+
+        /* Ajustar ancho máximo de la animación typewriter en móviles muy pequeños */
+        @media (max-width: 480px) {
+            .typewriter {
+                font-size: 1.25rem; /* Forzar tamaño más chico si es muy chico el celu */
+                letter-spacing: .05em;
+            }
         }
 
         @keyframes typing { from { width: 0 } to { width: 100% } }
@@ -91,10 +109,13 @@
             box-shadow: 0 10px 30px -10px rgba(0, 210, 255, 0.3);
         }
 
-        /* Hide scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #001B3D; }
-        ::-webkit-scrollbar-thumb { background: #00D2FF; border-radius: 10px; }
+        /* Ocultar scrollbar táctil pero mantener funcional */
+        ::-webkit-scrollbar { width: 0px; background: transparent; } /* Hidden for mobile */
+        @media (min-width: 768px) {
+            ::-webkit-scrollbar { width: 6px; }
+            ::-webkit-scrollbar-track { background: #001B3D; }
+            ::-webkit-scrollbar-thumb { background: #00D2FF; border-radius: 10px; }
+        }
     </style>
 </head>
 <body class="font-sans antialiased">
@@ -103,163 +124,164 @@
 
     <div id="particles-js"></div>
 
-    <header class="fixed top-0 w-full z-50 transition-all duration-300 px-6 py-4" id="main-header">
+    <header class="fixed top-0 w-full z-50 transition-all duration-300 px-4 md:px-6 py-3 md:py-4" id="main-header">
         <nav class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center gap-2">
-                <img src="logo der simplik.png" alt="SIMPLIK" class="h-12 drop-shadow-glow" style="filter: drop-shadow(0px 0px 8px rgba(0, 210, 255, 0.3));">
+                <img src="logo der simplik.png" alt="SIMPLIK" class="h-10 md:h-12 drop-shadow-glow" style="filter: drop-shadow(0px 0px 8px rgba(0, 210, 255, 0.3));">
             </div>
             
-            <div class="hidden md:flex gap-8 items-center font-mono text-sm">
+            <div class="flex gap-4 md:gap-8 items-center font-mono text-xs md:text-sm">
                 <a href="#servicios" class="hover:text-accent transition-colors relative group">
                     Servicios
                     <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all group-hover:w-full"></span>
                 </a>
-                <a href="#nosotros" class="hover:text-accent transition-colors relative group">
+                <a href="#nosotros" class="hover:text-accent transition-colors relative group hidden sm:block">
                     Nosotros
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all group-hover:w-full"></span>
                 </a>
-                <a href="#contacto" class="glow-button px-6 py-2 bg-accent text-navy font-bold rounded-full">
-                    Agendar Turno
+                <a href="#contacto" class="glow-button px-4 md:px-6 py-1.5 md:py-2 bg-accent text-navy font-bold rounded-full text-xs md:text-sm">
+                    Agendar
                 </a>
             </div>
         </nav>
     </header>
 
     <main>
-        <section class="h-screen flex flex-col justify-center items-center text-center px-4">
-            <h1 class="text-4xl md:text-7xl font-extrabold mb-6" data-aos="fade-up">
-                <span class="typewriter block mx-auto">Hacemos simple lo complejo</span>
+        <section class="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-24 pb-16">
+            <h1 class="text-3xl sm:text-4xl md:text-7xl font-extrabold mb-6" data-aos="fade-up">
+                <span class="typewriter block mx-auto text-xl sm:text-3xl md:text-7xl">Hacemos simple lo complejo</span>
             </h1>
-            <p class="text-gray-400 text-lg md:text-xl max-w-2xl mb-10" data-aos="fade-up" data-aos-delay="200">
+            <p class="text-gray-400 text-base md:text-xl max-w-2xl mb-10" data-aos="fade-up" data-aos-delay="200">
                 Consultoría estratégica para empresas que buscan orden, automatización y soluciones de alto impacto.
             </p>
             <div data-aos="zoom-in" data-aos-delay="400" id="magnetic-area">
-                <a href="#contacto" id="magnetic-btn" class="px-10 py-4 border-2 border-accent text-accent font-bold rounded-xl hover:bg-accent hover:text-navy transition-all duration-300 text-lg uppercase tracking-widest">
+                <a href="#contacto" id="magnetic-btn" class="px-8 md:px-10 py-3 md:py-4 border-2 border-accent text-accent font-bold rounded-xl hover:bg-accent hover:text-navy transition-all duration-300 text-base md:text-lg uppercase tracking-widest block sm:inline-block">
                     Empezar Transformación
                 </a>
             </div>
         </section>
 
-        <section id="nosotros" class="py-24 px-6 max-w-7xl mx-auto">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
+        <section id="nosotros" class="py-16 md:py-24 px-6 max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-center">
                 <div class="glass p-8 md:p-12 relative overflow-hidden" data-aos="fade-right">
-                    <div class="absolute top-0 right-0 p-4 opacity-10">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 hidden md:block">
                         <i class="fas fa-terminal text-8xl"></i>
                     </div>
-                    <h2 class="text-3xl font-bold mb-6 text-accent">Santiago Buffaz</h2>
-                    <p class="font-mono text-sm text-accent mb-4 uppercase tracking-widest">// Estratega & Desarrollador</p>
-                    <p class="text-gray-300 leading-relaxed mb-6">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-6 text-accent">Santiago Buffaz</h2>
+                    <p class="font-mono text-xs md:text-sm text-accent mb-4 uppercase tracking-widest">// Estratega & Desarrollador</p>
+                    <p class="text-gray-300 leading-relaxed mb-6 text-sm md:text-base">
                         Estudiante de Ingeniería en Sistemas con una obsesión: el orden. Me especializo en entender rápidamente las problemáticas reales de las PyMEs para convertirlas en soluciones tecnológicas instantáneas.
                     </p>
                     <div class="flex items-center gap-4 border-l-4 border-accent pl-4">
-                        <span class="text-sm italic text-gray-400">"Mi superpoder es la diagnosis rápida: identifico el cuello de botella antes de que el cliente termine de explicar el problema."</span>
+                        <span class="text-xs md:text-sm italic text-gray-400">"Mi superpoder es la diagnosis rápida: identifico el cuello de botella antes de que el cliente termine de explicar el problema."</span>
                     </div>
                 </div>
                 <div class="space-y-6" data-aos="fade-left">
-                    <h3 class="text-4xl font-extrabold">Diseñamos el <span class="text-accent">futuro</span> de tu flujo de trabajo.</h3>
+                    <h3 class="text-3xl md:text-4xl font-extrabold">Diseñamos el <span class="text-accent">futuro</span> de tu flujo de trabajo.</h3>
                     <div class="grid grid-cols-2 gap-4 text-center">
                         <div class="glass p-4">
-                            <span class="block text-3xl font-bold text-accent"><i class="fas fa-microchip"></i></span>
-                            <span class="text-xs text-gray-400 uppercase mt-2 block">Futuro Ingeniero</span>
+                            <span class="block text-2xl md:text-3xl font-bold text-accent"><i class="fas fa-microchip"></i></span>
+                            <span class="text-[10px] md:text-xs text-gray-400 uppercase mt-2 block">Futuro Ingeniero</span>
                         </div>
                         <div class="glass p-4">
-                            <span class="block text-3xl font-bold text-accent">100%</span>
-                            <span class="text-xs text-gray-400 uppercase mt-2 block">Enfocado al Cliente</span>
+                            <span class="block text-2xl md:text-3xl font-bold text-accent">100%</span>
+                            <span class="text-[10px] md:text-xs text-gray-400 uppercase mt-2 block">Enfocado al Cliente</span>
                         </div>
-                        <div class="glass p-4">
-                            <span class="block text-3xl font-bold text-accent"><i class="fas fa-bolt"></i></span>
-                            <span class="text-xs text-gray-400 uppercase mt-2 block">Diagnóstico Express</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 mt-6 text-center">
+                        <div class="glass p-4 flex flex-col items-center justify-center">
+                            <img src="isologo simplik.png" alt="Diagnosis Express" class="w-8 h-8 md:w-10 md:h-10 mb-2 opacity-50">
+                            <span class="text-[10px] md:text-xs text-gray-400 uppercase block">Diagnosis Express</span>
                         </div>
-                        <div class="glass p-4">
-                            <span class="block text-3xl font-bold text-accent"><i class="fas fa-code-branch"></i></span>
-                            <span class="text-xs text-gray-400 uppercase mt-2 block">Soluciones a Medida</span>
+                        <div class="glass p-4 flex flex-col items-center justify-center">
+                            <span class="block text-2xl md:text-3xl font-bold text-accent"><i class="fas fa-bolt"></i></span>
+                            <span class="text-[10px] md:text-xs text-gray-400 uppercase mt-2 block">Soluciones a Medida</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="servicios" class="py-24 px-6 bg-navy/50">
+        <section id="servicios" class="py-16 md:py-24 px-6 bg-navy/50">
             <div class="max-w-7xl mx-auto">
-                <div class="text-center mb-16" data-aos="fade-up">
-                    <h2 class="text-4xl font-bold">Nuestros Ejes de Acción</h2>
-                    <p class="text-gray-400 mt-4 font-mono">_soluciones_que_escalan.exe</p>
+                <div class="text-center mb-12 md:mb-16" data-aos="fade-up">
+                    <h2 class="text-3xl md:text-4xl font-bold">Nuestros Ejes de Acción</h2>
+                    <p class="text-gray-400 mt-4 font-mono text-xs md:text-sm">_soluciones_que_escalan.exe</p>
                 </div>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="glass p-8 service-card transition-all duration-500 group" data-aos="flip-left">
-                        <div class="w-12 h-12 bg-accent/20 rounded-lg flex items-center justify-center mb-6 group-hover:bg-accent group-hover:text-navy transition-colors">
-                            <i class="fas fa-robot text-xl"></i>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="glass p-6 md:p-8 service-card transition-all duration-500 group" data-aos="flip-left">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-accent/20 rounded-lg flex items-center justify-center mb-6 group-hover:bg-accent group-hover:text-navy transition-colors">
+                            <i class="fas fa-robot text-lg md:text-xl"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-4">Automatización</h3>
-                        <p class="text-sm text-gray-400">Etiquetado QR, módulos administrativos y ahorro masivo de tiempo operativo.</p>
+                        <h3 class="text-lg md:text-xl font-bold mb-4">Automatización</h3>
+                        <p class="text-xs md:text-sm text-gray-400">Etiquetado QR, módulos administrativos y ahorro masivo de tiempo operativo.</p>
                     </div>
-                    <div class="glass p-8 service-card transition-all duration-500 group" data-aos="flip-left" data-aos-delay="100">
-                        <div class="w-12 h-12 bg-accent/20 rounded-lg flex items-center justify-center mb-6 group-hover:bg-accent group-hover:text-navy transition-colors">
-                            <i class="fas fa-shopping-cart text-xl"></i>
+                    <div class="glass p-6 md:p-8 service-card transition-all duration-500 group" data-aos="flip-left" data-aos-delay="100">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-accent/20 rounded-lg flex items-center justify-center mb-6 group-hover:bg-accent group-hover:text-navy transition-colors">
+                            <i class="fas fa-shopping-cart text-lg md:text-xl"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-4">E-commerce+</h3>
-                        <p class="text-sm text-gray-400">Modificaciones avanzadas para Tiendanube e interacciones dinámicas de alto impacto.</p>
+                        <h3 class="text-lg md:text-xl font-bold mb-4">E-commerce+</h3>
+                        <p class="text-xs md:text-sm text-gray-400">Modificaciones avanzadas para Tiendanube e interacciones dinámicas de alto impacto.</p>
                     </div>
-                    <div class="glass p-8 service-card transition-all duration-500 group" data-aos="flip-left" data-aos-delay="200">
-                        <div class="w-12 h-12 bg-accent/20 rounded-lg flex items-center justify-center mb-6 group-hover:bg-accent group-hover:text-navy transition-colors">
-                            <i class="fas fa-comment-dots text-xl"></i>
+                    <div class="glass p-6 md:p-8 service-card transition-all duration-500 group" data-aos="flip-left" data-aos-delay="200">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-accent/20 rounded-lg flex items-center justify-center mb-6 group-hover:bg-accent group-hover:text-navy transition-colors">
+                            <i class="fas fa-comment-dots text-lg md:text-xl"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-4">IA & Chatbots</h3>
-                        <p class="text-sm text-gray-400">Integración de GPT con WhatsApp, CRMs y Pipelines de venta automatizados.</p>
+                        <h3 class="text-lg md:text-xl font-bold mb-4">IA & Chatbots</h3>
+                        <p class="text-xs md:text-sm text-gray-400">Integración de GPT con WhatsApp, CRMs y Pipelines de venta automatizados.</p>
                     </div>
-                    <div class="glass p-8 service-card transition-all duration-500 group" data-aos="flip-left" data-aos-delay="300">
-                        <div class="w-12 h-12 bg-accent/20 rounded-lg flex items-center justify-center mb-6 group-hover:bg-accent group-hover:text-navy transition-colors">
-                            <i class="fas fa-code text-xl"></i>
+                    <div class="glass p-6 md:p-8 service-card transition-all duration-500 group" data-aos="flip-left" data-aos-delay="300">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-accent/20 rounded-lg flex items-center justify-center mb-6 group-hover:bg-accent group-hover:text-navy transition-colors">
+                            <i class="fas fa-code text-lg md:text-xl"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-4">Sistemas a Medida</h3>
-                        <p class="text-sm text-gray-400">Módulos de registro de datos, control de stock y logística personalizada.</p>
+                        <h3 class="text-lg md:text-xl font-bold mb-4">Sistemas a Medida</h3>
+                        <p class="text-xs md:text-sm text-gray-400">Módulos de registro de datos, control de stock y logística personalizada.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="py-24 px-6 max-w-5xl mx-auto">
-            <div class="glass p-10 text-center" data-aos="zoom-in">
-                <h2 class="text-3xl font-bold mb-8">Impacto SIMPLIK</h2>
-                <div class="h-[400px] w-full">
+        <section class="py-16 md:py-24 px-6 max-w-5xl mx-auto">
+            <div class="glass p-6 md:p-10 text-center" data-aos="zoom-in">
+                <h2 class="text-2xl md:text-3xl font-bold mb-8">Impacto SIMPLIK</h2>
+                <div class="h-[250px] md:h-[400px] w-full">
                     <canvas id="efficiencyChart"></canvas>
                 </div>
             </div>
         </section>
 
-        <section id="contacto" class="py-24 px-6 bg-navy/80">
+        <section id="contacto" class="py-16 md:py-24 px-6 bg-navy/80">
             <div class="max-w-3xl mx-auto">
-                <div class="glass p-8 md:p-12 relative overflow-hidden" data-aos="fade-up">
-                    <h2 class="text-3xl font-bold mb-2">Agendá una Consultoría</h2>
-                    <p class="text-gray-400 mb-8 font-mono text-sm text-accent">// Describí tu caos actual</p>
+                <div class="glass p-6 md:p-12 relative overflow-hidden" data-aos="fade-up">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-2">Agendá una Consultoría</h2>
+                    <p class="text-gray-400 mb-8 font-mono text-xs md:text-sm text-accent">// Describí tu caos actual</p>
                     
-                    <form id="contact-form" class="space-y-6">
-                        <div class="grid md:grid-cols-2 gap-6">
+                    <form id="contact-form" class="space-y-5 md:space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
                             <div>
-                                <label class="block text-xs font-mono mb-2 uppercase tracking-widest">Nombre Completo</label>
-                                <input type="text" required name="nombre" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-accent transition-all">
+                                <label class="block text-[10px] md:text-xs font-mono mb-2 uppercase tracking-widest">Nombre Completo</label>
+                                <input type="text" required name="nombre" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 md:py-3 focus:outline-none focus:border-accent transition-all text-sm">
                             </div>
                             <div>
-                                <label class="block text-xs font-mono mb-2 uppercase tracking-widest">Empresa</label>
-                                <input type="text" required name="empresa" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-accent transition-all">
+                                <label class="block text-[10px] md:text-xs font-mono mb-2 uppercase tracking-widest">Empresa</label>
+                                <input type="text" required name="empresa" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 md:py-3 focus:outline-none focus:border-accent transition-all text-sm">
                             </div>
                         </div>
-                        
-                        <div class="grid md:grid-cols-2 gap-6">
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
                             <div>
-                                <label class="block text-xs font-mono mb-2 uppercase tracking-widest">Email de Contacto</label>
-                                <input type="email" required name="email" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-accent transition-all">
+                                <label class="block text-[10px] md:text-xs font-mono mb-2 uppercase tracking-widest">Email de Contacto</label>
+                                <input type="email" required name="email" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 md:py-3 focus:outline-none focus:border-accent transition-all text-sm">
                             </div>
                             <div>
-                                <label class="block text-xs font-mono mb-2 uppercase tracking-widest">Teléfono</label>
-                                <input type="tel" required name="telefono" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-accent transition-all">
+                                <label class="block text-[10px] md:text-xs font-mono mb-2 uppercase tracking-widest">Teléfono</label>
+                                <input type="tel" required name="telefono" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 md:py-3 focus:outline-none focus:border-accent transition-all text-sm">
                             </div>
                         </div>
 
                         <div>
-                            <label class="block text-xs font-mono mb-2 uppercase tracking-widest">Tipo de Problema</label>
-                            <select name="tipo" id="tipo-problema" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-accent transition-all text-white">
+                            <label class="block text-[10px] md:text-xs font-mono mb-2 uppercase tracking-widest">Tipo de Problema</label>
+                            <select name="tipo" id="tipo-problema" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 md:py-3 focus:outline-none focus:border-accent transition-all text-white text-sm">
                                 <option class="bg-navy" value="automatizacion">Automatización de Procesos</option>
                                 <option class="bg-navy" value="ecommerce">E-commerce / Tiendanube</option>
                                 <option class="bg-navy" value="ia">IA & Chatbots</option>
@@ -269,35 +291,35 @@
                         </div>
                         
                         <div id="otro-problema-container" class="hidden">
-                            <label class="block text-xs font-mono mb-2 uppercase tracking-widest text-accent">Especificar Otro</label>
-                            <input type="text" name="otro_tipo" id="otro-problema-input" placeholder="Breve descripción del problema..." class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-accent transition-all">
+                            <label class="block text-[10px] md:text-xs font-mono mb-2 uppercase tracking-widest text-accent">Especificar Otro Problema</label>
+                            <input type="text" name="otro_tipo" id="otro-problema-input" placeholder="Breve descripción del problema..." class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 md:py-3 focus:outline-none focus:border-accent transition-all text-sm">
                         </div>
 
                         <div>
-                            <label class="block text-xs font-mono mb-2 uppercase tracking-widest">Descripción del Caos</label>
-                            <textarea name="descripcion" rows="4" placeholder="¿Qué proceso te quita el sueño hoy?" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-accent transition-all resize-none"></textarea>
+                            <label class="block text-[10px] md:text-xs font-mono mb-2 uppercase tracking-widest">Descripción del Caos</label>
+                            <textarea name="descripcion" rows="4" placeholder="¿Qué proceso te quita el sueño hoy?" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-accent transition-all resize-none text-sm"></textarea>
                         </div>
-                        <button type="submit" id="submit-btn" class="w-full glow-button bg-accent text-navy font-extrabold uppercase py-4 rounded-xl tracking-widest text-lg flex items-center justify-center gap-3">
+                        <button type="submit" id="submit-btn" class="w-full glow-button bg-accent text-navy font-extrabold uppercase py-3.5 md:py-4 rounded-xl tracking-widest text-base md:text-lg flex items-center justify-center gap-3">
                             <span>Transformar Ahora</span>
                             <i class="fas fa-arrow-right"></i>
                         </button>
                     </form>
                     
-                    <div id="success-msg" class="hidden absolute inset-0 bg-navy/95 flex flex-col items-center justify-center text-center p-12 transition-all duration-500">
-                        <div class="w-20 h-20 bg-accent/20 rounded-full flex items-center justify-center mb-6 text-accent text-4xl">
+                    <div id="success-msg" class="hidden absolute inset-0 bg-navy/95 flex flex-col items-center justify-center text-center p-6 md:p-12 transition-all duration-500">
+                        <div class="w-16 h-16 md:w-20 md:h-20 bg-accent/20 rounded-full flex items-center justify-center mb-6 text-accent text-3xl md:text-4xl">
                             <i class="fas fa-check"></i>
                         </div>
-                        <h3 class="text-3xl font-bold mb-4">¡Mensaje Recibido!</h3>
-                        <p class="text-gray-300">Estamos analizando tu caso. Santiago se pondrá en contacto pronto.</p>
-                        <button onclick="resetForm()" class="mt-8 text-accent font-mono text-xs uppercase tracking-widest hover:underline cursor-pointer">Enviar otro mensaje</button>
+                        <h3 class="text-2xl md:text-3xl font-bold mb-4">¡Mensaje Recibido!</h3>
+                        <p class="text-gray-300 text-sm md:text-base">Estamos analizando tu caso. Santiago se pondrá en contacto pronto.</p>
+                        <button onclick="resetForm()" class="mt-8 text-accent font-mono text-[10px] md:text-xs uppercase tracking-widest hover:underline cursor-pointer">Enviar otro mensaje</button>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="py-12 px-6 text-center border-t border-white/5">
-        <p class="text-gray-500 text-sm font-mono tracking-widest uppercase">
+    <footer class="py-10 md:py-12 px-6 text-center border-t border-white/5">
+        <p class="text-gray-500 text-[10px] md:text-sm font-mono tracking-widest uppercase">
             &copy; 2024 SIMPLIK - HIGH-END SYSTEMS SOLUTIONS
         </p>
     </footer>
@@ -313,13 +335,13 @@
         // Particles.js Config
         particlesJS("particles-js", {
             "particles": {
-                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+                "number": { "value": 50, /* Menos partículas en móvil para performance */ "density": { "enable": true, "value_area": 800 } },
                 "color": { "value": "#00D2FF" },
                 "shape": { "type": "circle" },
                 "opacity": { "value": 0.3, "random": false },
-                "size": { "value": 3, "random": true },
+                "size": { "value": 2, "random": true },
                 "line_linked": { "enable": true, "distance": 150, "color": "#00D2FF", "opacity": 0.2, "width": 1 },
-                "move": { "enable": true, "speed": 1.5, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false, "attract": { "enable": true, "rotateX": 600, "rotateY": 1200 } }
+                "move": { "enable": true, "speed": 1, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false, "attract": { "enable": true, "rotateX": 600, "rotateY": 1200 } }
             },
             "interactivity": {
                 "detect_on": "canvas",
@@ -329,19 +351,25 @@
             "retina_detect": true
         });
 
-        // Custom Cursor Movement
+        // Custom Cursor Movement (Modificado para activarse solo si el ancho de pantalla es grande)
         const cursor = document.getElementById('cursor');
-        document.addEventListener('mousemove', (e) => {
+        
+        function updateCursor(e) {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
-        });
+        }
 
-        document.querySelectorAll('a, button, input, select, textarea').forEach(el => {
-            el.addEventListener('mouseenter', () => cursor.style.transform = 'scale(2.5)');
-            el.addEventListener('mouseleave', () => cursor.style.transform = 'scale(1)');
-        });
+        // Solo activar el listener si la pantalla es mayor a 768px (PC)
+        if (window.innerWidth >= 768) {
+            document.addEventListener('mousemove', updateCursor);
 
-        // Chart.js Performance Graph
+            document.querySelectorAll('a, button, input, select, textarea').forEach(el => {
+                el.addEventListener('mouseenter', () => cursor.style.transform = 'scale(2.5)');
+                el.addEventListener('mouseleave', () => cursor.style.transform = 'scale(1)');
+            });
+        }
+
+        // Chart.js Performance Graph (Adaptación responsiva automática de Chart.js)
         const ctx = document.getElementById('efficiencyChart').getContext('2d');
         new Chart(ctx, {
             type: 'line',
@@ -349,21 +377,23 @@
                 labels: ['Inicio', 'Mes 1', 'Mes 2', 'Mes 3', 'Mes 4', 'Mes 6'],
                 datasets: [
                     {
-                        label: 'Eficiencia sin SIMPLIK',
+                        label: 'Sin SIMPLIK',
                         data: [20, 22, 21, 23, 22, 24],
                         borderColor: 'rgba(255, 255, 255, 0.2)',
                         borderDash: [5, 5],
                         fill: false,
-                        tension: 0.1
+                        tension: 0.1,
+                        pointRadius: window.innerWidth < 768 ? 2 : 4 // Puntos más chicos en móvil
                     },
                     {
-                        label: 'Eficiencia con SIMPLIK',
+                        label: 'Con SIMPLIK',
                         data: [20, 45, 68, 85, 94, 98],
                         borderColor: '#00D2FF',
                         backgroundColor: 'rgba(0, 210, 255, 0.1)',
                         fill: true,
                         tension: 0.4,
-                        pointBackgroundColor: '#00D2FF'
+                        pointBackgroundColor: '#00D2FF',
+                        pointRadius: window.innerWidth < 768 ? 3 : 5
                     }
                 ]
             },
@@ -371,25 +401,27 @@
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                    legend: { labels: { color: 'white', font: { family: 'JetBrains Mono' } } }
+                    legend: { labels: { color: 'white', font: { family: 'JetBrains Mono', size: window.innerWidth < 768 ? 10 : 12 } } }
                 },
                 scales: {
-                    y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#ccc' } },
-                    x: { grid: { display: false }, ticks: { color: '#ccc' } }
+                    y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#ccc', font: { size: window.innerWidth < 768 ? 10 : 12 } } },
+                    x: { grid: { display: false }, ticks: { color: '#ccc', font: { size: window.innerWidth < 768 ? 10 : 12 } } }
                 }
             }
         });
 
-        // Magnetic Button Effect
-        const magBtn = document.getElementById('magnetic-btn');
-        const magArea = document.getElementById('magnetic-area');
-        magArea.addEventListener('mousemove', (e) => {
-            const rect = magBtn.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-            magBtn.style.transform = `translate(${x * 0.3}px, ${y * 0.5}px)`;
-        });
-        magArea.addEventListener('mouseleave', () => magBtn.style.transform = 'translate(0,0)');
+        // Magnetic Button Effect (Desactivado en móvil por problemas táctiles)
+        if (window.innerWidth >= 768) {
+            const magBtn = document.getElementById('magnetic-btn');
+            const magArea = document.getElementById('magnetic-area');
+            magArea.addEventListener('mousemove', (e) => {
+                const rect = magBtn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                magBtn.style.transform = `translate(${x * 0.3}px, ${y * 0.5}px)`;
+            });
+            magArea.addEventListener('mouseleave', () => magBtn.style.transform = 'translate(0,0)');
+        }
 
         // Lógica de Mostrar/Ocultar el campo "Otro"
         const tipoSelect = document.getElementById('tipo-problema');
@@ -407,12 +439,12 @@
             }
         });
 
-        // Lógica de Envío del Formulario
+        // Lógica de Envío del Formulario (MÉTODO FORM_DATA FUNCIONAL)
         const form = document.getElementById('contact-form');
         const successMsg = document.getElementById('success-msg');
         const submitBtn = document.getElementById('submit-btn');
 
-        // URL DE TU SCRIPT DE GOOGLE
+        // URL DE TU SCRIPT DE GOOGLE APPS SCRIPT
         const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby4HsHECqcldsdcIXBcizo047QVYinE3kyux0faIapCGUitPSIE3QeQXzih_vVie9MaYQ/exec';
 
         form.addEventListener('submit', async (e) => {
@@ -421,14 +453,14 @@
             submitBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Procesando...';
             submitBtn.disabled = true;
 
+            // Mandamos el FormData nativo sin convertirlo a JSON
             const formData = new FormData(form);
-            const data = Object.fromEntries(formData.entries());
 
             try {
                 // Fetch enviando los datos a Google Apps Script
                 await fetch(GOOGLE_SCRIPT_URL, { 
                     method: 'POST', 
-                    body: JSON.stringify(data),
+                    body: formData,
                     mode: 'no-cors' // Fundamental para que el navegador no bloquee la petición
                 });
                 
@@ -436,7 +468,7 @@
                 // Asumimos éxito si no salta al bloque catch.
                 successMsg.classList.remove('hidden');
                 form.reset();
-                otroContainer.classList.add('hidden');
+                otroContainer.classList.add('hidden'); // Ocultar campo 'otro'
                 otroInput.removeAttribute('required');
                 
             } catch (err) {
@@ -452,16 +484,16 @@
             successMsg.classList.add('hidden');
         }
 
-        // Header Scroll Effect
+        // Header Scroll Effect (Ajustado padding para móvil)
         window.addEventListener('scroll', () => {
             const header = document.getElementById('main-header');
             if (window.scrollY > 50) {
                 header.classList.add('glass', 'shadow-2xl');
-                header.classList.remove('py-4');
+                header.classList.remove('py-3', 'md:py-4');
                 header.classList.add('py-2');
             } else {
                 header.classList.remove('glass', 'shadow-2xl');
-                header.classList.add('py-4');
+                header.classList.add('py-3', 'md:py-4');
                 header.classList.remove('py-2');
             }
         });
