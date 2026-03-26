@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SIMPLIK | Hacemos simple lo complejo</title>
+    <title>SIMPLIK | Consultoría Tecnológica y Soluciones de Alto Impacto</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -41,21 +41,20 @@
             border-radius: 1.5rem;
         }
 
-        /* Custom Cursor - Oculto por defecto (para móvil) */
+        /* Custom Cursor - Refinado para perfil corporativo */
         #cursor {
-            display: none; /* Ocultar en móvil */
-            width: 20px;
-            height: 20px;
-            background: #00D2FF;
+            display: none;
+            width: 12px;
+            height: 12px;
+            background: rgba(0, 210, 255, 0.8);
             border-radius: 50%;
             position: fixed;
             pointer-events: none;
             z-index: 9999;
             transition: transform 0.1s ease-out, background 0.3s;
-            mix-blend-mode: screen;
         }
 
-        /* Responsive Cursor - Mostrar y activar solo en PC/Tablets (md y superior) */
+        /* Responsive Cursor - Mostrar solo en PC/Tablets */
         @media (min-width: 768px) {
             body { cursor: none; }
             #cursor { display: block; }
@@ -81,22 +80,21 @@
             transform: translateY(-2px);
         }
 
-        /* Typewriter adaptation for mobile */
+        /* Typewriter adaptation */
         .typewriter {
             overflow: hidden;
             border-right: .15em solid #00D2FF;
             white-space: nowrap;
             margin: 0 auto;
-            letter-spacing: .10em; /* Un poco menos espacio en móvil */
+            letter-spacing: .08em;
             animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
-            max-width: 100%; /* Asegurar que no se corte */
+            max-width: 100%;
         }
 
-        /* Ajustar ancho máximo de la animación typewriter en móviles muy pequeños */
         @media (max-width: 480px) {
             .typewriter {
-                font-size: 1.25rem; /* Forzar tamaño más chico si es muy chico el celu */
-                letter-spacing: .05em;
+                font-size: 1.25rem;
+                letter-spacing: .02em;
             }
         }
 
@@ -109,8 +107,8 @@
             box-shadow: 0 10px 30px -10px rgba(0, 210, 255, 0.3);
         }
 
-        /* Ocultar scrollbar táctil pero mantener funcional */
-        ::-webkit-scrollbar { width: 0px; background: transparent; } /* Hidden for mobile */
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 0px; background: transparent; }
         @media (min-width: 768px) {
             ::-webkit-scrollbar { width: 6px; }
             ::-webkit-scrollbar-track { background: #001B3D; }
@@ -121,7 +119,6 @@
 <body class="font-sans antialiased">
 
     <div id="cursor"></div>
-
     <div id="particles-js"></div>
 
     <header class="fixed top-0 w-full z-50 transition-all duration-300 px-4 md:px-6 py-2 md:py-4" id="main-header">
@@ -134,6 +131,9 @@
                 <a href="#servicios" class="hover:text-accent transition-colors relative group">
                     Servicios
                     <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all group-hover:w-full"></span>
+                </a>
+                <a href="#casos" class="hover:text-accent transition-colors relative group hidden sm:block">
+                    Casos de Uso
                 </a>
                 <a href="#nosotros" class="hover:text-accent transition-colors relative group hidden sm:block">
                     Nosotros
@@ -167,12 +167,12 @@
                         <i class="fas fa-terminal text-8xl"></i>
                     </div>
                     <h2 class="text-2xl md:text-3xl font-bold mb-6 text-accent">Santiago Buffaz</h2>
-                    <p class="font-mono text-xs md:text-sm text-accent mb-4 uppercase tracking-widest">// Estratega & Desarrollador</p>
+                    <p class="font-mono text-xs md:text-sm text-accent mb-4 uppercase tracking-widest">// Consultor Tecnológico & Estratega</p>
                     <p class="text-gray-300 leading-relaxed mb-6 text-sm md:text-base">
-                        Estudiante de Ingeniería en Sistemas con una obsesión: el orden. Me especializo en entender rápidamente las problemáticas reales de las PyMEs para convertirlas en soluciones tecnológicas instantáneas.
+                        Con sólida formación en Ingeniería en Sistemas y una obsesión por el orden operativo. Me especializo en entender rápidamente las problemáticas reales de las empresas para convertirlas en soluciones tecnológicas escalables e instantáneas.
                     </p>
                     <div class="flex items-center gap-4 border-l-4 border-accent pl-4">
-                        <span class="text-xs md:text-sm italic text-gray-400">"Mi superpoder es la diagnosis rápida: identifico el cuello de botella antes de que el cliente termine de explicar el problema."</span>
+                        <span class="text-xs md:text-sm italic text-gray-400">"Mi mayor diferencial es la diagnosis precisa: identifico el cuello de botella operativo antes de que escale, diseñando la arquitectura tecnológica adecuada."</span>
                     </div>
                 </div>
                 <div class="space-y-6" data-aos="fade-left">
@@ -180,21 +180,21 @@
                     <div class="grid grid-cols-2 gap-4 text-center">
                         <div class="glass p-4">
                             <span class="block text-2xl md:text-3xl font-bold text-accent"><i class="fas fa-microchip"></i></span>
-                            <span class="text-[10px] md:text-xs text-gray-400 uppercase mt-2 block">Futuro Ingeniero</span>
+                            <span class="text-[10px] md:text-xs text-gray-400 uppercase mt-2 block">Arquitectura Sólida</span>
                         </div>
                         <div class="glass p-4">
                             <span class="block text-2xl md:text-3xl font-bold text-accent">100%</span>
-                            <span class="text-[10px] md:text-xs text-gray-400 uppercase mt-2 block">Enfocado al Cliente</span>
+                            <span class="text-[10px] md:text-xs text-gray-400 uppercase mt-2 block">Enfoque a Resultados</span>
                         </div>
                     </div>
                     <div class="grid grid-cols-2 gap-4 mt-6 text-center">
                         <div class="glass p-4 flex flex-col items-center justify-center">
                             <img src="isologo simplik.png" alt="Diagnosis Express" class="w-8 h-8 md:w-10 md:h-10 mb-2 opacity-50">
-                            <span class="text-[10px] md:text-xs text-gray-400 uppercase block">Diagnosis Express</span>
+                            <span class="text-[10px] md:text-xs text-gray-400 uppercase block">Diagnosis Precisa</span>
                         </div>
                         <div class="glass p-4 flex flex-col items-center justify-center">
                             <span class="block text-2xl md:text-3xl font-bold text-accent"><i class="fas fa-bolt"></i></span>
-                            <span class="text-[10px] md:text-xs text-gray-400 uppercase mt-2 block">Soluciones a Medida</span>
+                            <span class="text-[10px] md:text-xs text-gray-400 uppercase mt-2 block">Soluciones B2B</span>
                         </div>
                     </div>
                 </div>
@@ -221,14 +221,14 @@
                             <i class="fas fa-shopping-cart text-lg md:text-xl"></i>
                         </div>
                         <h3 class="text-lg md:text-xl font-bold mb-4">E-commerce+</h3>
-                        <p class="text-xs md:text-sm text-gray-400">Modificaciones avanzadas para Tiendanube e interacciones dinámicas de alto impacto.</p>
+                        <p class="text-xs md:text-sm text-gray-400">Modificaciones avanzadas e interacciones dinámicas de alto impacto.</p>
                     </div>
                     <div class="glass p-6 md:p-8 service-card transition-all duration-500 group" data-aos="flip-left" data-aos-delay="200">
                         <div class="w-10 h-10 md:w-12 md:h-12 bg-accent/20 rounded-lg flex items-center justify-center mb-6 group-hover:bg-accent group-hover:text-navy transition-colors">
                             <i class="fas fa-comment-dots text-lg md:text-xl"></i>
                         </div>
                         <h3 class="text-lg md:text-xl font-bold mb-4">IA & Chatbots</h3>
-                        <p class="text-xs md:text-sm text-gray-400">Integración de GPT con WhatsApp, CRMs y Pipelines de venta automatizados.</p>
+                        <p class="text-xs md:text-sm text-gray-400">Integración de LLMs con WhatsApp, CRMs y Pipelines de venta automatizados.</p>
                     </div>
                     <div class="glass p-6 md:p-8 service-card transition-all duration-500 group" data-aos="flip-left" data-aos-delay="300">
                         <div class="w-10 h-10 md:w-12 md:h-12 bg-accent/20 rounded-lg flex items-center justify-center mb-6 group-hover:bg-accent group-hover:text-navy transition-colors">
@@ -241,20 +241,54 @@
             </div>
         </section>
 
-        <section class="py-16 md:py-24 px-6 max-w-5xl mx-auto">
+        <section id="casos" class="py-16 md:py-24 px-6 max-w-7xl mx-auto">
+            <div class="text-center mb-12 md:mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold">Soluciones Implementadas</h2>
+                <p class="text-gray-400 mt-4 font-mono text-xs md:text-sm text-accent">_casos_de_uso_reales.log</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                <div class="glass p-6 md:p-8 hover:border-accent transition-colors duration-300 group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-8 h-8 md:w-10 md:h-10 text-accent mb-4">
+                        <i class="fas fa-truck-fast text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-bold mb-3">Logística a Medida</h3>
+                    <p class="text-sm text-gray-400">Desarrollo de calculadoras de envío personalizadas basadas en zonas de distancia concéntricas y tarifas dinámicas para plataformas de e-commerce, optimizando el despacho local.</p>
+                </div>
+                
+                <div class="glass p-6 md:p-8 hover:border-accent transition-colors duration-300 group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-8 h-8 md:w-10 md:h-10 text-accent mb-4">
+                        <i class="fas fa-print text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-bold mb-3">Web-to-Print Avanzado</h3>
+                    <p class="text-sm text-gray-400">Integración de módulos complejos en tiendas online que permiten a los clientes cargar archivos de diseño, calcular dimensiones exactas y presupuestar costos de producción en tiempo real.</p>
+                </div>
+                
+                <div class="glass p-6 md:p-8 hover:border-accent transition-colors duration-300 group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-8 h-8 md:w-10 md:h-10 text-accent mb-4">
+                        <i class="fas fa-diagram-project text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-bold mb-3">Automatización de Workflows</h3>
+                    <p class="text-sm text-gray-400">Sincronización y depuración de bases de datos internas conectando gestores de proyectos mediante automatizaciones en la nube, reduciendo drásticamente la carga administrativa manual.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 md:py-24 px-6 max-w-5xl mx-auto bg-navy/50">
             <div class="glass p-6 md:p-10 text-center" data-aos="zoom-in">
-                <h2 class="text-2xl md:text-3xl font-bold mb-8">Impacto SIMPLIK</h2>
+                <h2 class="text-2xl md:text-3xl font-bold mb-2">Impacto Operativo</h2>
+                <p class="text-gray-400 text-[10px] md:text-xs mb-8 uppercase tracking-widest font-mono">* Proyección basada en la reducción de tiempos promedio tras la implementación</p>
                 <div class="h-[250px] md:h-[400px] w-full">
                     <canvas id="efficiencyChart"></canvas>
                 </div>
             </div>
         </section>
 
-        <section id="contacto" class="py-16 md:py-24 px-6 bg-navy/80">
+        <section id="contacto" class="py-16 md:py-24 px-6">
             <div class="max-w-3xl mx-auto">
                 <div class="glass p-6 md:p-12 relative overflow-hidden" data-aos="fade-up">
                     <h2 class="text-2xl md:text-3xl font-bold mb-2">Agendá una Consultoría</h2>
-                    <p class="text-gray-400 mb-8 font-mono text-xs md:text-sm text-accent">// Describí tu caos actual</p>
+                    <p class="text-gray-400 mb-8 font-mono text-xs md:text-sm text-accent">// Contanos sobre tu desafío actual</p>
                     
                     <form id="contact-form" class="space-y-5 md:space-y-6">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
@@ -280,38 +314,38 @@
                         </div>
 
                         <div>
-                            <label class="block text-[10px] md:text-xs font-mono mb-2 uppercase tracking-widest">Tipo de Problema</label>
+                            <label class="block text-[10px] md:text-xs font-mono mb-2 uppercase tracking-widest">Tipo de Servicio</label>
                             <select name="tipo" id="tipo-problema" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 md:py-3 focus:outline-none focus:border-accent transition-all text-white text-sm">
                                 <option class="bg-navy" value="automatizacion">Automatización de Procesos</option>
-                                <option class="bg-navy" value="ecommerce">E-commerce / Tiendanube</option>
-                                <option class="bg-navy" value="ia">IA & Chatbots</option>
-                                <option class="bg-navy" value="custom">Sistema Personalizado</option>
-                                <option class="bg-navy" value="otro">Otro (Especificar)</option>
+                                <option class="bg-navy" value="ecommerce">E-commerce Avanzado</option>
+                                <option class="bg-navy" value="ia">IA & Chatbots Corporativos</option>
+                                <option class="bg-navy" value="custom">Arquitectura / Sistema a Medida</option>
+                                <option class="bg-navy" value="otro">Otro Requerimiento</option>
                             </select>
                         </div>
                         
                         <div id="otro-problema-container" class="hidden">
-                            <label class="block text-[10px] md:text-xs font-mono mb-2 uppercase tracking-widest text-accent">Especificar Otro Problema</label>
-                            <input type="text" name="otro_tipo" id="otro-problema-input" placeholder="Breve descripción del problema..." class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 md:py-3 focus:outline-none focus:border-accent transition-all text-sm">
+                            <label class="block text-[10px] md:text-xs font-mono mb-2 uppercase tracking-widest text-accent">Especificar Requerimiento</label>
+                            <input type="text" name="otro_tipo" id="otro-problema-input" placeholder="Breve título del requerimiento..." class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 md:py-3 focus:outline-none focus:border-accent transition-all text-sm">
                         </div>
 
                         <div>
-                            <label class="block text-[10px] md:text-xs font-mono mb-2 uppercase tracking-widest">Descripción del Caos</label>
-                            <textarea name="descripcion" rows="4" placeholder="¿Qué proceso te quita el sueño hoy?" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-accent transition-all resize-none text-sm"></textarea>
+                            <label class="block text-[10px] md:text-xs font-mono mb-2 uppercase tracking-widest">Descripción del Proyecto o Desafío</label>
+                            <textarea name="descripcion" rows="4" placeholder="Describí brevemente el proceso que necesitas optimizar o automatizar..." class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-accent transition-all resize-none text-sm"></textarea>
                         </div>
                         <button type="submit" id="submit-btn" class="w-full glow-button bg-accent text-navy font-extrabold uppercase py-3.5 md:py-4 rounded-xl tracking-widest text-base md:text-lg flex items-center justify-center gap-3">
-                            <span>Transformar Ahora</span>
+                            <span>Solicitar Análisis</span>
                             <i class="fas fa-arrow-right"></i>
                         </button>
                     </form>
                     
-                    <div id="success-msg" class="hidden absolute inset-0 bg-navy/95 flex flex-col items-center justify-center text-center p-6 md:p-12 transition-all duration-500">
+                    <div id="success-msg" class="hidden absolute inset-0 bg-navy/95 flex flex-col items-center justify-center text-center p-6 md:p-12 transition-all duration-500 z-10">
                         <div class="w-16 h-16 md:w-20 md:h-20 bg-accent/20 rounded-full flex items-center justify-center mb-6 text-accent text-3xl md:text-4xl">
                             <i class="fas fa-check"></i>
                         </div>
-                        <h3 class="text-2xl md:text-3xl font-bold mb-4">¡Mensaje Recibido!</h3>
-                        <p class="text-gray-300 text-sm md:text-base">Estamos analizando tu caso. Santiago se pondrá en contacto pronto.</p>
-                        <button onclick="resetForm()" class="mt-8 text-accent font-mono text-[10px] md:text-xs uppercase tracking-widest hover:underline cursor-pointer">Enviar otro mensaje</button>
+                        <h3 class="text-2xl md:text-3xl font-bold mb-4">¡Solicitud Recibida!</h3>
+                        <p class="text-gray-300 text-sm md:text-base">Estamos analizando la información. Nos pondremos en contacto a la brevedad para coordinar la consultoría.</p>
+                        <button onclick="resetForm()" class="mt-8 text-accent font-mono text-[10px] md:text-xs uppercase tracking-widest hover:underline cursor-pointer">Enviar otra solicitud</button>
                     </div>
                 </div>
             </div>
@@ -332,44 +366,49 @@
         // AOS Initialize
         AOS.init({ duration: 800, once: true });
 
-        // Particles.js Config
+        // Particles.js Config - Refinado para ser menos intrusivo
         particlesJS("particles-js", {
             "particles": {
-                "number": { "value": 50, /* Menos partículas en móvil para performance */ "density": { "enable": true, "value_area": 800 } },
+                "number": { "value": 35, "density": { "enable": true, "value_area": 800 } },
                 "color": { "value": "#00D2FF" },
                 "shape": { "type": "circle" },
-                "opacity": { "value": 0.3, "random": false },
+                "opacity": { "value": 0.2, "random": false },
                 "size": { "value": 2, "random": true },
-                "line_linked": { "enable": true, "distance": 150, "color": "#00D2FF", "opacity": 0.2, "width": 1 },
+                "line_linked": { "enable": true, "distance": 150, "color": "#00D2FF", "opacity": 0.1, "width": 1 },
                 "move": { "enable": true, "speed": 1, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false, "attract": { "enable": true, "rotateX": 600, "rotateY": 1200 } }
             },
             "interactivity": {
                 "detect_on": "canvas",
                 "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
-                "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 1 } }, "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3 }, "repulse": { "distance": 200, "duration": 0.4 }, "push": { "particles_nb": 4 }, "remove": { "particles_nb": 2 } }
+                "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 0.5 } }, "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3 }, "repulse": { "distance": 200, "duration": 0.4 }, "push": { "particles_nb": 4 }, "remove": { "particles_nb": 2 } }
             },
             "retina_detect": true
         });
 
-        // Custom Cursor Movement (Modificado para activarse solo si el ancho de pantalla es grande)
+        // Custom Cursor Movement
         const cursor = document.getElementById('cursor');
         
         function updateCursor(e) {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
+            cursor.style.left = e.clientX - 6 + 'px'; // Centrado en base al nuevo tamaño (12px / 2)
+            cursor.style.top = e.clientY - 6 + 'px';
         }
 
-        // Solo activar el listener si la pantalla es mayor a 768px (PC)
         if (window.innerWidth >= 768) {
             document.addEventListener('mousemove', updateCursor);
 
             document.querySelectorAll('a, button, input, select, textarea').forEach(el => {
-                el.addEventListener('mouseenter', () => cursor.style.transform = 'scale(2.5)');
-                el.addEventListener('mouseleave', () => cursor.style.transform = 'scale(1)');
+                el.addEventListener('mouseenter', () => {
+                    cursor.style.transform = 'scale(2)';
+                    cursor.style.background = 'rgba(0, 210, 255, 0.4)';
+                });
+                el.addEventListener('mouseleave', () => {
+                    cursor.style.transform = 'scale(1)';
+                    cursor.style.background = 'rgba(0, 210, 255, 0.8)';
+                });
             });
         }
 
-        // Chart.js Performance Graph (Adaptación responsiva automática de Chart.js)
+        // Chart.js Performance Graph
         const ctx = document.getElementById('efficiencyChart').getContext('2d');
         new Chart(ctx, {
             type: 'line',
@@ -377,16 +416,16 @@
                 labels: ['Inicio', 'Mes 1', 'Mes 2', 'Mes 3', 'Mes 4', 'Mes 6'],
                 datasets: [
                     {
-                        label: 'Sin SIMPLIK',
+                        label: 'Sin Arquitectura SIMPLIK',
                         data: [20, 22, 21, 23, 22, 24],
                         borderColor: 'rgba(255, 255, 255, 0.2)',
                         borderDash: [5, 5],
                         fill: false,
                         tension: 0.1,
-                        pointRadius: window.innerWidth < 768 ? 2 : 4 // Puntos más chicos en móvil
+                        pointRadius: window.innerWidth < 768 ? 2 : 4
                     },
                     {
-                        label: 'Con SIMPLIK',
+                        label: 'Con Implementación SIMPLIK',
                         data: [20, 45, 68, 85, 94, 98],
                         borderColor: '#00D2FF',
                         backgroundColor: 'rgba(0, 210, 255, 0.1)',
@@ -410,7 +449,7 @@
             }
         });
 
-        // Magnetic Button Effect (Desactivado en móvil por problemas táctiles)
+        // Magnetic Button Effect
         if (window.innerWidth >= 768) {
             const magBtn = document.getElementById('magnetic-btn');
             const magArea = document.getElementById('magnetic-area');
@@ -439,7 +478,7 @@
             }
         });
 
-        // Lógica de Envío del Formulario (MÉTODO FORM_DATA FUNCIONAL)
+        // Lógica de Envío del Formulario
         const form = document.getElementById('contact-form');
         const successMsg = document.getElementById('success-msg');
         const submitBtn = document.getElementById('submit-btn');
@@ -453,22 +492,18 @@
             submitBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Procesando...';
             submitBtn.disabled = true;
 
-            // Mandamos el FormData nativo sin convertirlo a JSON
             const formData = new FormData(form);
 
             try {
-                // Fetch enviando los datos a Google Apps Script
                 await fetch(GOOGLE_SCRIPT_URL, { 
                     method: 'POST', 
                     body: formData,
-                    mode: 'no-cors' // Fundamental para que el navegador no bloquee la petición
+                    mode: 'no-cors' 
                 });
                 
-                // Como usamos no-cors, la respuesta siempre es "opaca". 
-                // Asumimos éxito si no salta al bloque catch.
                 successMsg.classList.remove('hidden');
                 form.reset();
-                otroContainer.classList.add('hidden'); // Ocultar campo 'otro'
+                otroContainer.classList.add('hidden');
                 otroInput.removeAttribute('required');
                 
             } catch (err) {
@@ -484,12 +519,11 @@
             successMsg.classList.add('hidden');
         }
 
-        // Header Scroll Effect (Ajustado padding py-2 para móvil, fijo para evitar saltos)
+        // Header Scroll Effect
         window.addEventListener('scroll', () => {
             const header = document.getElementById('main-header');
             if (window.scrollY > 50) {
                 header.classList.add('glass', 'shadow-2xl');
-                // En móvil mantenemos py-2 fijo para evitar el jitter
                 if (window.innerWidth >= 768) {
                    header.classList.remove('md:py-4');
                    header.classList.add('md:py-2');
