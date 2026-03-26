@@ -121,7 +121,7 @@
     <div id="cursor"></div>
     <div id="particles-js"></div>
 
-    <header class="fixed top-0 w-full z-50 transition-all duration-300 px-4 md:px-6 py-2 md:py-4" id="main-header">
+    <header class="fixed top-0 w-full z-50 transition-all duration-300 px-4 md:px-6 py-4 md:py-6" id="main-header">
         <nav class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center gap-2">
                 <img src="logo der simplik.png" alt="SIMPLIK" class="h-14 md:h-16 drop-shadow-glow" style="filter: drop-shadow(0px 0px 8px rgba(0, 210, 255, 0.3));">
@@ -146,7 +146,7 @@
     </header>
 
     <main>
-        <section class="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-20 pb-10">
+        <section class="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-24 pb-10">
             <h1 class="text-3xl sm:text-4xl md:text-7xl font-extrabold mb-6" data-aos="fade-up">
                 <span class="typewriter block mx-auto text-xl sm:text-3xl md:text-7xl">Hacemos simple lo complejo</span>
             </h1>
@@ -154,7 +154,7 @@
                 Consultoría estratégica para empresas que buscan orden, automatización y soluciones de alto impacto.
             </p>
             <div data-aos="zoom-in" data-aos-delay="400" id="magnetic-area">
-                <a href="#contacto" id="magnetic-btn" class="px-8 md:px-10 py-3 md:py-4 border-2 border-accent text-accent font-bold rounded-xl hover:bg-accent hover:text-navy transition-all duration-300 text-base md:text-lg uppercase tracking-widest block sm:inline-block">
+                <a href="#contacto" id="magnetic-btn" class="px-8 md:px-10 py-3 md:py-4 border-2 border-accent text-accent font-bold rounded-xl hover:bg-accent hover:text-navy transition-all duration-300 text-base md:text-lg uppercase tracking-widest inline-flex items-center justify-center sm:inline-block">
                     Empezar Transformación
                 </a>
             </div>
@@ -519,21 +519,19 @@
             successMsg.classList.add('hidden');
         }
 
-        // Header Scroll Effect
+        // Header Scroll Effect - CORREGIDO: Lógica unificada para desktop y mobile
         window.addEventListener('scroll', () => {
             const header = document.getElementById('main-header');
             if (window.scrollY > 50) {
                 header.classList.add('glass', 'shadow-2xl');
-                if (window.innerWidth >= 768) {
-                   header.classList.remove('md:py-4');
-                   header.classList.add('md:py-2');
-                }
+                // Reducción suave de padding en todas las resoluciones
+                header.classList.remove('py-4', 'md:py-6');
+                header.classList.add('py-2', 'md:py-4');
             } else {
                 header.classList.remove('glass', 'shadow-2xl');
-                if (window.innerWidth >= 768) {
-                   header.classList.remove('md:py-2');
-                   header.classList.add('md:py-4');
-                }
+                // Volver a padding inicial en todas las resoluciones
+                header.classList.remove('py-2', 'md:py-4');
+                header.classList.add('py-4', 'md:py-6');
             }
         });
     </script>
